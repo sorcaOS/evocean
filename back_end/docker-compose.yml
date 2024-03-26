@@ -1,0 +1,67 @@
+version: '3.9'
+
+services:
+  db:
+    image: postgres
+    restart: always
+    # set shared memory limit when using docker-compose
+    shm_size: 1024mb
+    environment:
+      POSTGRES_PASSWORD: binhna123
+      POSTGRES_USER: postgres
+      POSTGRES_DB: evocean
+      PGDATA: /var/lib/postgresql/data/pgdata
+    volumes:
+      - ~/evocean/postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+
+  django:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: asia-east1-docker.pkg.dev/omelet-f0b89/github/evocean_django
+    volumes:
+      - .:/code  # Assumes your Django project is in the current directory
+    command: [ "bash", "-c", "cat .docker.env > .env && python manage.py runserver 0.0.0.0:8080 --noreload"]
+    environment:
+      - IS_DOCKER=1
+    depends_on:
+      - redis
+      - db
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    ports:
+      - "8080:8080"
+
+  redis:
+    image: redis:alpine
+    restart: always
+    ports:
+      - "6379:6379"
+
+#  celery:
+#    image: asia-east1-docker.pkg.dev/omelet-f0b89/github/evocean_django
+#    restart: always
+#    command: [ "bash", "-c", "cat .docker.env > .env && celery -A website_identifier_django worker -l info" ]
+#    volumes:
+#      - .:/code  # Assumes your Django project is in the current directory
+#    environment:
+#      - IS_DOCKER=1
+#    depends_on:
+#      - redis
+#      - django
+#    extra_hosts:
+#      - "host.docker.internal:host-gateway"
+
+  https-portal:
+    image: steveltn/https-portal:1
+    ports:
+      - "80:80"
+      - "443:443"
+    environment:
+      DOMAINS: 'identify-api.omelet.tech -> http://django:8080'
+      STAGE: 'production' # Don't use production until staging works
+      FORCE_RENEW: true
+      EMAIL: 'sometimesocrazy@gmail.com'
+      WEBSOCKET: 'true'

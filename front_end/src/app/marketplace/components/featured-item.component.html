@@ -1,0 +1,21 @@
+<div class="bg-white rounded-2xl border border-gray-200 flex flex-col items-start cursor-pointer">
+  <img [src]="item.thumbnail_image.image" class="w-full h-64 rounded-t-xl object-cover" />
+  <div class="p-4 flex flex-col gap-3">
+    <div class="text-gray-900 text-lg font-semibold">{{ item.name |maxTextLength:35 }}</div>
+    <div class="text-slate-600">{{ item.category }}</div>
+    <div class="flex justify-between items-center border-t pt-3 mt-3">
+      <div class="flex items-center gap-2">
+        <span class="text-sm font-medium">$</span>
+        <span class="text-sm font-medium">{{ item.price_usd |humanNumber }}</span>
+      </div>
+      <div class="flex items-center gap-1">
+        <img class="w-3.5 h-3.5" src="assets/sol-logo.svg"  [alt]="item.name"/>
+        <span class="text-sm font-medium">{{ item.price |humanNumber }}</span>
+      </div>
+      <div class="flex items-center gap-1">
+        <span class="text-sm font-medium">Volume:</span>
+        <span class="text-sm font-medium">{{ item.remaining_products  |humanNumber }}</span>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,22 @@
+<header class="bg-white border-b border-slate-200" id="header">
+  <div class="flex justify-between w-full h-20 py-5">
+    <!-- Logo Section -->
+    <div class="flex items-center gap-8 px-8">
+      <a class="block cursor-pointer" routerLink="/">
+        <img alt="Logo" class="w-36 h-6" src="./assets/logo-text.svg" />
+      </a>
+      <!-- Navigation Links -->
+      <div class="flex gap-4">
+        <button class="px-3 py-2 rounded-md" mat-button routerLink="browse-all">Browse all</button>
+        <button class="px-3 py-2 rounded-md" mat-button routerLink="ui-kit">UI Kit</button>
+        <button class="px-3 py-2 rounded-md" mat-button routerLink="template">Template</button>
+        <button class="px-3 py-2 rounded-md" mat-button routerLink="wireframe-kit">Wireframe kit</button>
+      </div>
+    </div>
+    <!-- Auth Buttons -->
+    <div class="flex gap-3 pl-4">
+      <button class="px-3 py-2 rounded-md" mat-button routerLink="/auth/login">Login</button>
+      <button class="px-3 py-2 rounded-md" mat-button (click)="onConnectWalletClick()">Connect</button>
+    </div>
+  </div>
+</header>

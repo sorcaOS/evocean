@@ -1,0 +1,30 @@
+<div class="self-stretch justify-between items-start gap-8 inline-flex">
+  <div class="h-[456px] w-1/2 justify-start items-start gap-3 flex">
+    <div class="grow shrink basis-0 text-gray-800 text-base font-normal leading-normal">
+      {{ product?.overview }}
+    </div>
+  </div>
+  <div class=" w-1/2 grow shrink basis-0 pl-8 flex-col justify-start items-start gap-8 inline-flex">
+    <div class="self-stretch h-52 flex-col justify-start items-start gap-3 flex">
+      <div class="self-stretch text-gray-900 text-lg font-medium leading-7">Highlights</div>
+      <div class="self-stretch text-gray-700 text-base font-normal leading-normal">
+        {{ product?.highlight }}
+      </div>
+    </div>
+    <div class="self-stretch h-[92px] flex-col justify-start items-start gap-3 flex">
+      <div class="self-stretch text-gray-900 text-lg font-medium leading-7">Format</div>
+      <div class="self-stretch h-[52px] flex-col justify-start items-start gap-1 flex">
+        <div *ngFor="let format of product?.formats || []"
+             class="self-stretch justify-start items-center gap-3 inline-flex">
+          <div class="w-5 h-5 pl-[5px] pr-[4.17px] py-[1.67px] justify-center items-center flex">
+            <div class="w-[10.83px] h-[16.67px] relative">
+            </div>
+          </div>
+          <div class="grow shrink basis-0 text-gray-600 text-base font-medium leading-normal">
+            - {{ format.name }}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

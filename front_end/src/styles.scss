@@ -1,0 +1,14 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@import '@angular/material/prebuilt-themes/indigo-pink.css';
+
+/* Modify Angular Materials default typography  */
+* {
+  font-family: 'Inter', sans-serif !important;
+  white-space: pre-line !important;
+}
+
+mat-icon {
+  font-family: 'Material Icons' !important;
+}

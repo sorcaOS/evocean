@@ -1,0 +1,87 @@
+{
+  "name": "evocean",
+  "$schema": "../node_modules/nx/schemas/project-schema.json",
+  "projectType": "application",
+  "prefix": "evocean",
+  "sourceRoot": "evocean/src",
+  "tags": [],
+  "targets": {
+    "build": {
+      "executor": "@angular-devkit/build-angular:application",
+      "outputs": [
+        "{options.outputPath}"
+      ],
+      "options": {
+        "outputPath": "dist/evocean",
+        "index": "evocean/src/index.html",
+        "browser": "evocean/src/main.ts",
+        "polyfills": [
+          "zone.js"
+        ],
+        "tsConfig": "evocean/tsconfig.app.json",
+        "inlineStyleLanguage": "scss",
+        "assets": [
+          "evocean/src/favicon.ico",
+          "evocean/src/assets",
+          {
+            "input": "shared-components/src/assets",
+            "glob": "**.*",
+            "output": "assets"
+          }
+        ],
+        "styles": [
+          "evocean/src/styles.scss"
+        ],
+        "scripts": []
+
+      },
+      "configurations": {
+        "production": {
+          "budgets": [
+            {
+              "type": "initial",
+              "maximumWarning": "500kb",
+              "maximumError": "1mb"
+            },
+            {
+              "type": "anyComponentStyle",
+              "maximumWarning": "2kb",
+              "maximumError": "4kb"
+            }
+          ],
+          "outputHashing": "all",
+          "fileReplacements": [
+            {
+              "replace": "evocean/src/environments/environment.ts",
+              "with": "evocean/src/environments/environment.prd.ts"
+            }
+          ]
+        },
+        "development": {
+          "optimization": false,
+          "extractLicenses": false,
+          "sourceMap": true
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "serve": {
+      "executor": "@angular-devkit/build-angular:dev-server",
+      "configurations": {
+        "production": {
+          "buildTarget": "evocean:build:production"
+        },
+        "development": {
+          "buildTarget": "evocean:build:development"
+        }
+      },
+      "defaultConfiguration": "development"
+    },
+    "extract-i18n": {
+      "executor": "@angular-devkit/build-angular:extract-i18n",
+      "options": {
+        "buildTarget": "evocean:build"
+      }
+    }
+  }
+}

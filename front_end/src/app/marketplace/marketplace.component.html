@@ -1,0 +1,66 @@
+<div class="w-screen flex justify-center">
+  <div class="w-[1280px]">
+    <div class="w-full max-w-screen-xl h-[388px] pt-28 pb-24 bg-white flex flex-col justify-start items-center gap-12">
+      <div class="flex flex-col self-stretch h-[180px] px-8 justify-start items-start gap-8">
+        <h1 class="text-gray-900 text-6xl font-semibold leading-[60px]">Design resources to optimize for creative work
+          flow</h1>
+        <div class="flex flex-wrap gap-3">
+          <ng-container *ngFor="let badge of badges">
+            <div class="px-4 py-1 bg-violet-100 rounded-xl flex justify-center items-center cursor-pointer">
+              <div class="text-center text-violet-800 text-sm font-medium leading-tight">{{ badge }}</div>
+            </div>
+          </ng-container>
+        </div>
+      </div>
+    </div>
+
+
+    <evocean-featured></evocean-featured>
+    <div class="w-full flex justify-center">
+      <div class="w-[1280px] h-[110px] py-20 flex justify-center items-center gap-14">
+        <div *ngFor="let item of features" class="flex px-8 items-start gap-11">
+          <!-- Consider using Angular Material Icon if applicable -->
+          <div class="flex justify-start items-center gap-6">
+            <div class="p-3 flex justify-center items-center">
+              <!-- Placeholder for the Icon or Image -->
+              <div class="w-[110px] h-[110px]">
+                <!-- Image or SVG content goes here -->
+                <img [alt]="item.title" [src]="item.image" />
+              </div>
+            </div>
+            <div class="flex flex-col justify-start items-start gap-2">
+              <div class="w-[242px] text-gray-900 text-xl font-semibold ">{{ item.title }}</div>
+              <div class="text-slate-600 text-sm font-normal leading-tight">{{ item.description }}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="pt-20 pb-32 bg-white flex flex-col items-center gap-9">
+      <div class="w-full max-w-screen-xl px-8 flex flex-col items-start gap-10">
+        <div class="flex w-full justify-between items-end">
+          <h1 class="text-4xl font-semibold text-gray-900">Newest themes and templates</h1>
+          <button class="flex items-center gap-1 text-indigo-600 text-sm font-medium">
+            Browse all
+            <!-- Use an icon from Angular Material or any other icon library here -->
+          </button>
+        </div>
+        <div class="flex w-full justify-start items-start gap-12 flex-wrap">
+          <!-- Example item, repeat this block for each item using *ngFor in Angular -->
+          <!--          *ngFor="let item of products"-->
+          <evocean-product-card *ngFor="let product of products" [product]="product"
+                                [routerLink]="['product',product.id]"></evocean-product-card>
+        </div>
+        <div class="w-full flex justify-center items-center gap-2">
+          <button class="px-4 py-2 bg-indigo-600 text-white rounded-xl shadow">
+            View more
+          </button>
+        </div>
+      </div>
+    </div>
+
+
+  </div>
+</div>

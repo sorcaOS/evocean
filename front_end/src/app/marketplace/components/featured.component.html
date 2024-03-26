@@ -1,0 +1,16 @@
+<div class="w-full h-screen pb-20 bg-white flex flex-col items-center gap-9">
+  <div class="h-full px-8 flex flex-col items-start gap-10 w-full">
+    <!-- Title and View all -->
+    <div class="flex justify-between items-end w-full">
+      <h2 class="text-4xl font-semibold text-gray-900">Featured</h2>
+      <button class="text-indigo-600 text-sm font-medium flex items-center gap-1">
+        View all
+        <!-- Icon could go here -->
+      </button>
+    </div>
+    <!-- Items -->
+    <div class="flex gap-12 w-full">
+      <evocean-featured-item *ngFor="let item of items" [item]="item"></evocean-featured-item>
+    </div>
+  </div>
+</div>

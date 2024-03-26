@@ -1,0 +1,5 @@
+.idea/*
+*.exe
+./credentials.json
+/scripts/cloud-sql-proxy.darwin.arm64
+/data
